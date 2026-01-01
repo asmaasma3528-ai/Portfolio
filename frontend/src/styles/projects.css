@@ -1,0 +1,17 @@
+.projects-section {
+  padding: 10px 10%;
+  background-color: var(--bg-dark);
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: #fff;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.section-title span {
+  color: var(--accent-cyan);
+}
+
+

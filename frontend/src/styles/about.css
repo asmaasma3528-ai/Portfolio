@@ -1,0 +1,41 @@
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: center;
+  padding: 100px 0;
+}
+
+.profile-frame {
+  position: relative;
+  border: 2px solid rgba(6, 182, 212, 0.3);
+  border-radius: 20px;
+  padding: 15px;
+}
+
+.profile-frame img {
+  width: 100%;
+  border-radius: 15px;
+  filter: grayscale(20%);
+}
+
+.about-mission {
+  margin-top: 30px;
+}
+
+.mission-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+  color: var(--text-white);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent-cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent-cyan);
+}

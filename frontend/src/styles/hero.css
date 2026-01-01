@@ -7,16 +7,13 @@
   padding: 0 10%;
 }
 
-/* TEXT TRANSITION: Slides up from bottom */
 .hero-content {
   opacity: 0;
   transform: translateY(30px);
   animation: fadeInUp 0.8s ease-out forwards;
 }
-
-/* IMAGE TRANSITION: Zooms in from right */
+ 
 .hero-image-box {
-  margin-top:2rem;
   opacity: 0;
   transform: scale(0.8) translateX(50px);
   animation: zoomInRight 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
@@ -37,7 +34,6 @@
   }
 }
 
-/* THE BLUE GLOW AROUND THE IMAGE */
 .profile-frame {
   position: relative;
   width: 380px;

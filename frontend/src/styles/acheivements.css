@@ -1,0 +1,80 @@
+.achievements-section {
+  padding: 100px 10%;
+  background-color: var(--bg-dark);
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  margin-top: 50px;
+}
+
+.achievement-card {
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.4), rgba(30, 41, 59, 0.2));
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.achievement-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-cyan);
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.achievement-icon {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.3));
+}
+
+.achievement-result {
+  display: block;
+  font-family: 'Fira Code', monospace;
+  color: var(--accent-cyan);
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.achievement-title {
+  color: #fff;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.achievement-org {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Subtle glowing line at the bottom of the card */
+.hover-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--accent-cyan);
+  transition: width 0.4s ease;
+}
+
+.achievement-card:hover .hover-line {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .achievements-section {
+    padding: 60px 5%;
+  }
+}

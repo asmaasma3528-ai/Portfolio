@@ -1,9 +1,12 @@
-/* frontend/src/styles/App.css */
+html{
+  scroll-behavior:smooth;
+}
+
 :root {
-  --bg-dark: #020617;        /* Deep Midnight Navy */
-  --accent-cyan: #06b6d4;    /* Vibrant Cyan for highlights */
-  --accent-blue: #3b82f6;    /* Secondary Blue */
-  --card-bg: #0f172a;        /* Lighter navy for cards */
+  --bg-dark: #020617;        
+  --accent-cyan: #06b6d4;   
+  --accent-blue: #3b82f6;    
+  --card-bg: #0f172a;        
   --text-white: #f8fafc;
   --text-dim: #94a3b8;
 }
@@ -13,7 +16,11 @@ body {
   color: var(--text-white);
   margin: 0;
   font-family: 'Inter', sans-serif;
-  overflow-x: hidden; /* Prevents scrollbars during transitions */
+  overflow-x: hidden; 
+}
+
+section {
+  scroll-margin-top: 50px; 
 }
 
 .btn-cyan {
