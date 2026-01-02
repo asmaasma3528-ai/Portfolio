@@ -16,7 +16,7 @@ export default function App() {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/status")
+    fetch("https://pavan-portfolio-api.onrender.com/api/status")
       .then((res) => res.json())
       .then((data) => {
         if (data.db_data) setProjects(data.db_data);
