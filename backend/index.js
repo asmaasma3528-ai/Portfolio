@@ -3,6 +3,9 @@ import cors from "cors";
 import { createClient } from "@supabase/supabase-js";
 import "dotenv/config";
 import nodemailer from "nodemailer";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const index = express();
 
@@ -28,14 +31,14 @@ index.post("/api/contact", async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "asmaasma3528@gmail.com",
-        pass: "qzlldseqwboskzgv",
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
     const mailOptions = {
-      from: `"Portfolio contact" <asmaasma3528@gmail.com>`,
-      to: "asmaasma3528@gmail.com",
+      from: `"Portfolio contact" <${process.env.EMAIL_USER}>`,
+      to: process.env.RECEIVER_EMAIL,
       subject: `New Portfolio Contact Message from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
     };

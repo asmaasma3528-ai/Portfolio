@@ -19,13 +19,13 @@ const ExperienceEducation = () => {
 
   const education = [
     {
-      institution: "Your University Name",
-      degree: "Bachelor of Technology in Computer Science",
+      institution: "Sri Krishnadevaraya University",
+      degree: "Bachelor of Science",
       year: "2018 - 2022",
       grade: "8.5 CGPA"
     },
     {
-      institution: "State Board Education",
+      institution: "Sri Krishnadevaraya University",
       degree: "Higher Secondary Education",
       year: "2016 - 2018",
       grade: "95%"
