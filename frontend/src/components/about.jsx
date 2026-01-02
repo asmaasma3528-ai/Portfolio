@@ -1,5 +1,5 @@
 import "../styles/About.css";
-import aboutImg from "../utils/p2.avif";
+import pic1 from "../utils/pic1.jpg";
 
 export default function About() {
   return (
@@ -7,7 +7,7 @@ export default function About() {
       <div className="container about-grid">
         <div className="about-left">
           <div className="profile-frame">
-            <img src={aboutImg} alt="Pavan Kumar" />
+            <img src={pic1} alt="Pavan Kumar" />
           </div>
         </div>
         <div className="about-right">
