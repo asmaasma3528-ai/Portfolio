@@ -3,9 +3,6 @@ import cors from "cors";
 import { createClient } from "@supabase/supabase-js";
 import "dotenv/config";
 import nodemailer from "nodemailer";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 const index = express();
 
@@ -14,7 +11,8 @@ const supabase = createClient(
   process.env.SUPABASE_KEY
 );
 
-index.use(cors({ origin: "http://localhost:5173" }));
+// UPDATED: Open CORS so your Vercel site can connect
+index.use(cors()); 
 index.use(express.json());
 
 index.post("/api/contact", async (req, res) => {
@@ -27,7 +25,6 @@ index.post("/api/contact", async (req, res) => {
 
     if (error) throw error;
 
-    // 2. Set up the Emailer
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -43,12 +40,9 @@ index.post("/api/contact", async (req, res) => {
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
     };
 
-    // 4. Send the Email
     await transporter.sendMail(mailOptions);
 
-    res
-      .status(200)
-      .json({ success: true, message: "Message sent & Email received!" });
+    res.status(200).json({ success: true, message: "Message sent & Email received!" });
   } catch (err) {
     console.error("Error details:", err);
     res.status(500).json({ success: false, message: "Server Error" });
@@ -57,7 +51,7 @@ index.post("/api/contact", async (req, res) => {
 
 index.get("/api/status", async (req, res) => {
   try {
-    const { data, error } = await supabase.from("projects").select("*");
+    const { data, error } = await supabase.from("contacts").select("*").limit(1);
     if (error) throw error;
     res.json({ message: "Success!! Database connected.", status: "Online" });
   } catch (err) {
@@ -65,7 +59,8 @@ index.get("/api/status", async (req, res) => {
   }
 });
 
-const PORT = 5000;
+// UPDATED: Use Render's dynamic port
+const PORT = process.env.PORT || 5000; 
 index.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });
