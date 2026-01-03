@@ -23,33 +23,41 @@ index.post("/api/contact", async (req, res) => {
   const { name, email, message } = req.body;
 
   try {
+    // 1. Save to Supabase FIRST
     const { error } = await supabase
       .from("contacts")
       .insert([{ name, email, message }]);
 
     if (error) throw error;
 
+    // 2. CREATE THE TRANSPORTER (This is the function you are missing)
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true, // Use SSL for Port 465
       auth: {
         user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        pass: process.env.EMAIL_PASS, // Your 16-digit App Password
       },
     });
 
+    // 3. DEFINE THE EMAIL CONTENT
     const mailOptions = {
-      from: `"Portfolio contact" <${process.env.EMAIL_USER}>`,
+      from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
       to: process.env.RECEIVER_EMAIL,
-      subject: `New Portfolio Contact Message from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
+      subject: `New Message from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
     };
 
+    // 4. SEND THE EMAIL
     await transporter.sendMail(mailOptions);
 
-    res.status(200).json({ success: true, message: "Message sent & Email received!" });
+    // 5. RESPOND TO FRONTEND
+    res.status(200).json({ success: true, message: "Message sent!" });
+
   } catch (err) {
-    console.error("Error details:", err);
-    res.status(500).json({ success: false, message: "Server Error" });
+    console.error("Backend Error:", err);
+    res.status(500).json({ success: false, error: err.message });
   }
 });
 
