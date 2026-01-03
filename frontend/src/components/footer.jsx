@@ -1,6 +1,5 @@
 import React from "react";
-import "../styles/Footer.css";
-import instaLogo from "../utils/insta.jpg";
+import "../styles/footer.css";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

@@ -1,4 +1,4 @@
-import "../styles/Hero.css";
+import "../styles/hero.css";
 import pic2 from "../utils/pic2.jpg";
 
 export default function Hero() {

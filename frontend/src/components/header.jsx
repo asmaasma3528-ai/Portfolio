@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../styles/Header.css";
+import "../styles/header.css";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
