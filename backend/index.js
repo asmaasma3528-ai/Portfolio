@@ -19,44 +19,45 @@ index.use(cors({
 }));
 index.use(express.json());
 
+// 1. Define transporter OUTSIDE the post route (at the top of your file)
+const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true, // Port 465 uses SSL
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+  connectionTimeout: 10000, // 10 seconds
+  greetingTimeout: 5000,
+  socketTimeout: 10000,
+});
+
+// 2. Your route
 index.post("/api/contact", async (req, res) => {
   const { name, email, message } = req.body;
 
   try {
-    // 1. Save to Supabase FIRST
-    const { error } = await supabase
-      .from("contacts")
-      .insert([{ name, email, message }]);
-
+    // 3. Save to Supabase (This is working!)
+    const { error } = await supabase.from("contacts").insert([{ name, email, message }]);
     if (error) throw error;
 
-    // 2. CREATE THE TRANSPORTER (This is the function you are missing)
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true, // Use SSL for Port 465
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS, // Your 16-digit App Password
-      },
-    });
+    // 4. Send the response to the UI NOW
+    // This stops the "Oops! Something went wrong" message on your site
+    res.status(200).json({ success: true, message: "Message sent!" });
 
-    // 3. DEFINE THE EMAIL CONTENT
-    const mailOptions = {
+    // 5. Send Email in the background
+    transporter.sendMail({
       from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
       to: process.env.RECEIVER_EMAIL,
       subject: `New Message from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
-    };
-
-    // 4. SEND THE EMAIL
-    await transporter.sendMail(mailOptions);
-
-    // 5. RESPOND TO FRONTEND
-    res.status(200).json({ success: true, message: "Message sent!" });
+    }).catch(mailErr => {
+      console.error("Email failed in background, but data was saved:", mailErr);
+    });
 
   } catch (err) {
-    console.error("Backend Error:", err);
+    console.error("Database Error:", err);
     res.status(500).json({ success: false, error: err.message });
   }
 });
