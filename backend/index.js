@@ -11,8 +11,12 @@ const supabase = createClient(
   process.env.SUPABASE_KEY
 );
 
-// UPDATED: Open CORS so your Vercel site can connect
-index.use(cors()); 
+index.use(cors({
+  origin: "https://pavan-portfolio-smoky.vercel.app", 
+  methods: ["POST", "GET", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
+}));
 index.use(express.json());
 
 index.post("/api/contact", async (req, res) => {
