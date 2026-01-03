@@ -95,11 +95,10 @@
 }
 
 .skill-tag {
-  font-size: 4rem;
-  font-weight: 900;
-  color: rgba(255, 255, 255, 0.03); /* Subtle watermark effect */
-  white-space: nowrap;
-  text-transform: uppercase;
+  font-size: 1.5rem;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1); /* Just the border */
+  font-weight: 800;
 }
 
 @keyframes pulse {
@@ -113,5 +112,33 @@
 }
 
 @media (max-width: 768px) {
-  .skills-grid { grid-template-columns: 1fr; }
+  .skills-section {
+    padding: 60px 5%; 
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+ 
+  .marquee-wrapper {
+    margin-top: 40px;
+    opacity: 0.8; 
+  }
+
+  .skill-tag {
+    font-size: 2.5rem; 
+    color: rgba(255, 255, 255, 0.1);
+    -webkit-text-stroke: 1px rgba(6, 182, 212, 0.2); 
+  }
+
+  .skill-card {
+    padding: 20px;
+  }
+
+  .skill-pill {
+    font-size: 0.8rem;
+    padding: 5px 12px;
+  }
 }

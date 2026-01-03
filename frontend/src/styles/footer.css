@@ -14,7 +14,7 @@
 
 .footer-brand .logo {
   font-size: 1.8rem;
-  font-weight: 800;
+  font-weight: 500;
   margin-bottom: 20px;
 }
 
@@ -78,24 +78,114 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #4b5563; /* Very dim text */
+  color: #4b5563; 
   font-size: 0.85rem;
 }
 
-/* Responsive Fix */
 @media (max-width: 768px) {
+  .footer {
+    padding: 40px 20px 20px;
+    background: linear-gradient(to top, #01040f, #050a1f);
+    border-top: 1px solid rgba(6, 182, 212, 0.1);
+  }
+
+  /* 1. Stack Brand on top but keep it elegant */
   .footer-content {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-  
-  .footer-brand p {
-    margin: 0 auto;
-  }
-  
-  .footer-bottom {
+    display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 30px;
     text-align: center;
+  }
+
+  .footer-brand .logo {
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 10px;
+    display: inline-block;
+    border-radius: 8px;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    width: 85%;
+    margin: 20px 0; 
+    text-align: center;
+  }
+
+  .footer-links h4 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: var(--accent-cyan);
+    margin-bottom: 15px;
+    text-align:center;
+  }
+
+  .footer-links ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    justify-items: center;
+  }
+
+  .footer-links ul li a {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px 20px;
+    border-radius: 12px;
+    display: block;
+    width:120px;
+    font-size: 0.85rem;
+    margin:auto;
+  }
+
+  .footer-socials h4 {
+    font-size: 0.9rem;
+    color: var(--accent-cyan);
+  }
+
+  .social-icons {
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .social-icons a {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(6, 182, 212, 0.1);
+    border: 1px solid rgba(6, 182, 212, 0.2);
+    border-radius: 50%; 
+    font-size: 0; 
+    position: relative;
+  }
+
+
+  .social-icons a::after {
+    content: "in";
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+  .social-icons a:nth-child(2)::after { content: "IG"; }
+  .social-icons a:nth-child(3)::after { content: "@"; }
+
+  /* 4. Bottom Section with Glass Effect */
+  .footer-bottom {
+    margin-top: 40px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .footer-bottom p {
+    font-size: 0.7rem;
+    line-height: 1.5;
   }
 }

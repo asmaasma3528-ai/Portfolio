@@ -71,12 +71,65 @@
   letter-spacing: 1px;
   margin-top: 10px;
 }
-
+/* --- ONLY FOR MOBILE VIEW --- */
 @media (max-width: 768px) {
+  .contact-container {
+    padding: 40px 20px;
+    background-color: var(--bg-dark);
+  }
+
   .contact-box {
-    padding: 30px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+    backdrop-filter: none;
   }
+
+  .contact-form {
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .contact-form input, 
+  .contact-form textarea {
+    background: #0f172a; 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 16px; 
+    color: #fff;
+    width: 90%;
+    transition: 0.3s ease;
+  }
+
+  /* 3. High-contrast focus state */
+  .contact-form input:focus, 
+  .contact-form textarea:focus {
+    border-color: var(--accent-cyan);
+    background: #1e293b; /* Slightly lighter when typing */
+    outline: none;
+  }
+
+  /* 4. Center the title and make it pop */
   .section-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 8px;
   }
-} 
+
+  .contact-box p {
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  /* 5. Make the button a solid block at the bottom */
+  .contact-form .btn-cyan {
+    margin-top: 10px;
+    padding: 18px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+}

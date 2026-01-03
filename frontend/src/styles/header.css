@@ -110,3 +110,67 @@
   .nav-menu { gap: 20px; }
   .nav-container { padding: 0 20px; }
 }
+
+/* --- Desktop Helpers --- */
+.mobile-toggle { display: none; }
+.mobile-only { display: none; }
+
+/* --- Mobile Styles --- */
+@media (max-width: 992px) {
+  .mobile-toggle {
+    display: block;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+    z-index: 2000;
+    transition: 0.3s;
+  }
+
+  .desktop-only {
+    display: none; /* Hide the main 'Talk' button on mobile */
+  }
+
+  .mobile-only {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Start off-screen */
+    width: 80%;
+    height: 100vh;
+    background: rgba(2, 6, 23, 0.98); /* Deep dark background */
+    backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    transition: 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+    z-index: 1500;
+  }
+
+  .nav-menu.active {
+    right: 0; /* Slide in */
+  }
+
+  .nav-link {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .nav-container {
+    padding: 0 25px;
+  }
+
+  /* Styling the 'Talk' button inside the mobile menu */
+  .mobile-only .talk-btn {
+    display: inline-flex;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    border-color: var(--accent-cyan);
+  }
+}

@@ -39,7 +39,6 @@ const Skills = () => {
         </div>
       </div>
 
-      {/* Your Marquee Logic Refined */}
       <div className="marquee-wrapper">
         <div className="marquee">
           <div className="marquee-content">

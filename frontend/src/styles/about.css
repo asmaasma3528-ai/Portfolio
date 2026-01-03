@@ -39,3 +39,40 @@
   border-radius: 50%;
   box-shadow: 0 0 10px var(--accent-cyan);
 }
+
+@media (max-width: 992px) {
+  .about-grid {
+    grid-template-columns: 1fr; 
+    gap: 40px; 
+    padding: 60px 20px;
+    text-align:left; 
+  }
+
+  .about-left {
+    max-width: 300px; 
+    margin: 0 auto; 
+  }
+
+  .profile-frame {
+    padding: 10px; /* Slightly smaller frame padding */
+  }
+
+  .section-title {
+    font-size: 2rem; /* Shrink title slightly */
+    line-height: 1.3;
+    margin-bottom: 20px;
+  }
+
+  .description {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+
+  .mission-item {
+    justify-content: center; /* Center the bullet points */
+    text-align: left; /* Keep text left-aligned inside centered container */
+    max-width: 90%;
+    margin: 0 auto 15px;
+  }
+}
