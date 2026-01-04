@@ -28,8 +28,8 @@ export default function Contact() {
           setStatus(
           "Thanks for reaching out! I'll get back to you within 24 hours."
         );
+        setFormData({ name: "", email: "", message: "" });
         }, 2000);
-        setFormData({ name: "", email: "", message: "" }); // Clears the form
       } else {
         setStatus("Oops! Something went wrong on the server.");
       }
