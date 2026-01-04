@@ -21,16 +21,20 @@ index.use(express.json());
 
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
-  port: 465,
-  secure: true, // Port 465 uses SSL
+  port: 587,
+  secure: false, // TLS will be used automatically
   auth: {
     user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
+    pass: process.env.EMAIL_PASS, // App Password
   },
-  connectionTimeout: 10000, 
+  tls: {
+    rejectUnauthorized: false, // sometimes needed on cloud hosts
+  },
+  connectionTimeout: 10000,
   greetingTimeout: 5000,
   socketTimeout: 10000,
 });
+
 
 index.post("/api/contact", async (req, res) => {
   const { name, email, message } = req.body;
