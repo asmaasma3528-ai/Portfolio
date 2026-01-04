@@ -10,12 +10,22 @@ export default function Contact() {
     message: "",
   });
   const [status, setStatus] = useState("");
+  const [ statusType, setStatusType ] = useState("");
+
+   const showStatus = ( message, type="info" ) => {
+    setStatus(message);
+    setStatusType(type);
+
+    setTimeout(() => {
+      setStatus("");
+      setStatusType("")
+    }, 2000);
+   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setStatus("Sending...");
-
+    showStatus("Sending...", "info");
     try {
       const response = await fetch("https://pavan-portfolio-api.onrender.com/api/contact", {
         method: "POST",
@@ -24,17 +34,16 @@ export default function Contact() {
       });
 
       if (response.ok) {
-        setTimeout(() => {
-          setStatus(
-          "Thanks for reaching out! I'll get back to you within 24 hours."
+          showStatus(
+          "Thanks for reaching out! I'll get back to you within 24 hours.",
+          "success"
         );
         setFormData({ name: "", email: "", message: "" });
-        }, 2000);
       } else {
-        setStatus("Oops! Something went wrong on the server.");
+        showStatus("Oops! Something went wrong on the server.", "error");
       }
     } catch (error) {
-      setStatus("Error: Make sure your backend is running!");
+      showStatus("Error: Make sure your backend is running!", "error");
     } finally {
       setLoading(false);
     }
@@ -46,7 +55,7 @@ export default function Contact() {
         <h2 className="section-title">
           Let's Build Something <span>Great</span>
         </h2>
-        <p className="status-msg">{status}</p>
+        <p className={`status-msg ${statusType}`}>{status}</p>
 
         {loading ? (
           <LoadingSpinner />
@@ -84,11 +93,11 @@ export default function Contact() {
           </form>
         )}
 
-        {status === "success" && (
+        {statusType === "success" && (
           <div className="popup success">✅ Message sent successfully!!</div>
         )}
 
-        {status === "error" && (
+        {statusType === "error" && (
           <div className="popup error">❌ Error. Please try again.</div>
         )}
       </div>
