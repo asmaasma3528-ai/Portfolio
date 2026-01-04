@@ -10,37 +10,42 @@ export default function Contact() {
     message: "",
   });
   const [status, setStatus] = useState("");
-  const [ statusType, setStatusType ] = useState("");
+  const [statusType, setStatusType] = useState("");
 
-   const statusTimerRef = useRef(null);
+  const statusTimerRef = useRef(null);
 
-   const showStatus = ( message, type="info" ) => {
+  const showStatus = (message, type = "info", autoHide = true) => {
     setStatus(message);
     setStatusType(type);
 
-    if(statusTimerRef.current){
+    if (!autoHide) return;
+
+    if (statusTimerRef.current) {
       clearTimeout(statusTimerRef.current);
     }
 
-   statusTimerRef.current = setTimeout(() => {
+    statusTimerRef.current = setTimeout(() => {
       setStatus("");
-      setStatusType("")
+      setStatusType("");
     }, 2000);
-   }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    showStatus("Sending...", "info");
+    showStatus("Sending...", "info", false);
     try {
-      const response = await fetch("https://pavan-portfolio-api.onrender.com/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://pavan-portfolio-api.onrender.com/api/contact",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (response.ok) {
-          showStatus(
+        showStatus(
           "Thanks for reaching out! I'll get back to you within 24 hours.",
           "success"
         );
@@ -61,7 +66,13 @@ export default function Contact() {
         <h2 className="section-title">
           Let's Build Something <span>Great</span>
         </h2>
-        <p className={`status-msg ${statusType}`}>{status}</p>
+        <p
+          className={`transition-opacity duration-300 ${
+            status ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          {status}
+        </p>
 
         {loading ? (
           <LoadingSpinner />
