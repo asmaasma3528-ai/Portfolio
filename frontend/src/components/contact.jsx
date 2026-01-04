@@ -24,9 +24,11 @@ export default function Contact() {
       });
 
       if (response.ok) {
-        setStatus(
+        setTimeout(() => {
+          setStatus(
           "Thanks for reaching out! I'll get back to you within 24 hours."
         );
+        }, 2000);
         setFormData({ name: "", email: "", message: "" }); // Clears the form
       } else {
         setStatus("Oops! Something went wrong on the server.");

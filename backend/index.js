@@ -19,7 +19,6 @@ index.use(cors({
 }));
 index.use(express.json());
 
-// 1. Define transporter OUTSIDE the post route (at the top of your file)
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
@@ -28,25 +27,20 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
-  connectionTimeout: 10000, // 10 seconds
+  connectionTimeout: 10000, 
   greetingTimeout: 5000,
   socketTimeout: 10000,
 });
 
-// 2. Your route
 index.post("/api/contact", async (req, res) => {
   const { name, email, message } = req.body;
 
   try {
-    // 3. Save to Supabase (This is working!)
     const { error } = await supabase.from("contacts").insert([{ name, email, message }]);
     if (error) throw error;
 
-    // 4. Send the response to the UI NOW
-    // This stops the "Oops! Something went wrong" message on your site
     res.status(200).json({ success: true, message: "Message sent!" });
 
-    // 5. Send Email in the background
     transporter.sendMail({
       from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
       to: process.env.RECEIVER_EMAIL,
