@@ -42,13 +42,17 @@ index.post("/api/contact", async (req, res) => {
     res.status(200).json({ success: true, message: "Message sent!" });
 
     transporter.sendMail({
-      from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
-      to: process.env.RECEIVER_EMAIL,
-      subject: `New Message from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
-    }).catch(mailErr => {
-      console.error("Email failed in background, but data was saved:", mailErr);
-    });
+  from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
+  to: process.env.RECEIVER_EMAIL,
+  subject: `New Message from ${name}`,
+  text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+}, (err, info) => {
+  if (err) {
+    console.error("❌ Mail error:", err);
+  } else {
+    console.log("✅ Mail sent:", info.response);
+  }
+});
 
   } catch (err) {
     console.error("Database Error:", err);

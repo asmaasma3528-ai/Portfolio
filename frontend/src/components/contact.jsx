@@ -27,7 +27,7 @@ export default function Contact() {
     statusTimerRef.current = setTimeout(() => {
       setStatus("");
       setStatusType("");
-    }, 2000);
+    }, 3000);
   };
 
   const handleSubmit = async (e) => {
