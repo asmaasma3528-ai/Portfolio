@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "../styles/contact.css";
 import LoadingSpinner from "../components/LoadingSpinner";
 
@@ -12,11 +12,17 @@ export default function Contact() {
   const [status, setStatus] = useState("");
   const [ statusType, setStatusType ] = useState("");
 
+   const statusTimerRef = useRef(null);
+
    const showStatus = ( message, type="info" ) => {
     setStatus(message);
     setStatusType(type);
 
-    setTimeout(() => {
+    if(statusTimerRef.current){
+      clearTimeout(statusTimerRef.current);
+    }
+
+   statusTimerRef.current = setTimeout(() => {
       setStatus("");
       setStatusType("")
     }, 2000);
