@@ -48,8 +48,8 @@
 .nav-link {
   text-decoration: none;
   color: var(--text-dim);
-  font-size: 0.9rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: bold;
   position: relative;
   padding: 5px 0;
   transition: color 0.3s ease;

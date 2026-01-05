@@ -21,7 +21,7 @@ export default function Header() {
     <nav className={`navbar-compact ${scrolled ? "scrolled" : ""} ${isOpen ? "menu-open" : ""}`}>
       <div className="nav-container">
         <div className="logo-text" onClick={closeMenu}>
-          PAVAN<span>.K</span>
+         <a href = "#home">PAVAN<span>.K</span></a>
         </div>
         
         {/* Hamburger Icon */}
