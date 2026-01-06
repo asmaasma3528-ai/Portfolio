@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import "./styles/App.css";
 
+import BirthdayHero from "../src/components/birthdaySurprise.jsx";
+
 import ProjectCard from "../src/components/projectCard";
 import Hero from "./components/heroComponent";
 import Header from "../src/components/header";
@@ -25,6 +27,9 @@ export default function App() {
 
   return (
     <div className="app-main-wrapper">
+
+    <BirthdayHero />
+
       <section className="full-width-section">
         <Header />
       </section>

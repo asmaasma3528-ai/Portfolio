@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&display=swap');
+
+/* This ensures the confetti canvas sits on top of your overlay */
+canvas {
+  z-index: 10001 !important; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none; 
+}
+
+.surprise-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+   height: 100vh;
+  background-size:contain;
+  background-position:center;
+  z-index: 10000;
+  overflow: hidden;
+}
+
+.overlay-darkener {
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Darkens photo slightly so text is readable */
+  display: flex; justify-content: center; align-items: center;
+}
+
+.final-message-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  font-weight: 300;
+  font-style: italic;
+  color: white;
+  text-align: center;
+  max-width: 80%;
+  line-height: 1.5;
+  /* Soft glow to make it look magical */
+  text-shadow: 0 0 20px rgba(255, 71, 126, 0.8), 0 0 10px rgba(0, 0, 0, 0.5);
+  animation: softPulse 3s infinite ease-in-out;
+}
+
+@keyframes softPulse {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.02); }
+}
+
+.reveal-btn-large {
+  padding: 20px 50px;
+  font-size: 1.5rem;
+  background: #ff477e;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 0 30px rgba(255, 71, 126, 0.5);
+  transition: transform 0.3s;
+}
+
+.reveal-btn-large:hover {
+  transform: scale(1.1);
+}
+
+.final-message-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 85%;
+  animation: fadeInContainer 2s ease-out;
+}
+
+/* Container for the side layout */
+.listening-box.side-layout {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: flex-start; /* Keeps text on the left */
+  padding-left: 8%; /* Adjust this to move the card in/out */
+}
+
+/* The elegant box for your text */
+.text-glass-card {
+  background: rgba(0, 0, 0, 0.45); /* Transparent dark */
+  backdrop-filter: blur(12px); /* Beautiful blur effect */
+  padding: 40px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 450px; /* Limits width so it doesn't cover the whole photo */
+  text-align: left;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  animation: slideInLeft 1.2s ease-out;
+}
+
+/* Pushes the card to the side */
+.spacer-area {
+  flex: 1.5; 
+}
+
+/* Makes the background photo clear */
+.overlay-darkener {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.15); /* Very light, just enough to see text */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Animations and Text Scaling */
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.birthday-wish-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin: 15px 0;
+  line-height: 1.1;
+}
+
+.romantic-quote-text {
+  font-size: 1.3rem;
+  font-weight: 300;
+  line-height: 1.6;
+  font-style: italic;
+}

@@ -12,7 +12,10 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 // 2. Middleware
 app.use(cors({
-  origin: "https://pavan-portfolio-smoky.vercel.app",
+ origin: [
+    "http://localhost:5173", 
+    "https://pavan-portfolio-smoky.vercel.app"
+  ],
   credentials: true
 }));
 app.use(express.json());
