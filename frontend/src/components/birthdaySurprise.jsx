@@ -4,7 +4,7 @@ import "../styles/BirthdaySurprise.css";
 import song from "../utils/Mera-hua.mp3";
 import image2 from "../utils/surprise2.jpg";
 
- const BirthdayHero = ({ children }) => {
+const BirthdayHero = ({ children }) => {
   const [isRevealed, setIsRevealed] = useState(false);
   const [isStarted, setIsStarted] = useState(false);
 
@@ -60,50 +60,50 @@ import image2 from "../utils/surprise2.jpg";
   if (isRevealed) return children;
 
   return (
-  <div
-    className="surprise-overlay"
-    style={{ backgroundImage: `url(${image2})` }}
-  >
-    <div className="overlay-darkener">
-      {!isStarted ? (
-        <button className="reveal-btn-large" onClick={startSurprise}>
-          💗 Tap for a little magic
-        </button>
-      ) : (
-        /* This container handles the side-by-side layout */
-        <div className="listening-box side-layout">
-          
-          <div className="text-glass-card">
-            {/* Part 1: The Date and Day */}
-            <p className="special-date-text">
-              {new Date().toLocaleDateString("en-US", {
-                weekday: "long",
-                month: "long",
-                day: "numeric",
-                year: "numeric",
-              })}
-            </p>
+    <div
+      className="surprise-overlay"
+      style={{ backgroundImage: `url(${image2})` }}
+    >
+      <div className="overlay-darkener">
+        {!isStarted ? (
+          <button className="reveal-btn-large" onClick={startSurprise}>
+            💗 Tap for a little magic
+          </button>
+        ) : (
+          /* This container handles the side-by-side layout */
+          <div className="listening-box side-layout">
+            <div className="text-glass-card">
+              {/* Part 1: The Date and Day */}
+              <p className="special-date-text">
+                {new Date().toLocaleDateString("en-US", {
+                  weekday: "long",
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric",
+                })}
+              </p>
 
-            {/* Part 2: The Main Wish */}
-            <h1 className="birthday-wish-title">
-              Happy Birthday, Sweetheart 😍
-            </h1>
+              {/* Part 2: The Main Wish */}
+              <h1 className="birthday-wish-title">
+                Happy Birthday, Sweetheart 😍
+              </h1>
 
-            {/* Part 3: The Beautiful Words */}
-            <p className="romantic-quote-text">
-              To the one who holds my heart: You are the light in my code, the
-              peace in my chaos, and the love of my life. I love you more than
-              words could ever describe. 💖
-            </p>
+              {/* Part 3: The Beautiful Words */}
+              <p className="romantic-quote-text">
+                You are my happy place. My smile starts with you. Always
+                cheering for you 💕 <br />
+                You make me smile for no reason at all.
+                Loving you is my favorite thing. Today is all about you 🎂✨
+              </p>
+            </div>
+
+            {/* This empty div pushes everything to the left, leaving the right side clear */}
+            <div className="spacer-area"></div>
           </div>
-
-          {/* This empty div pushes everything to the left, leaving the right side clear */}
-          <div className="spacer-area"></div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
-  </div>
-)
-}
+  );
+};
 
 export default BirthdayHero;
