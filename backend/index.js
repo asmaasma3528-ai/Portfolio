@@ -20,6 +20,11 @@ app.use(cors({
 }));
 app.use(express.json());
 
+//status Route
+app.get("/api/status", (req, res) => {
+  res.status(200).json({status:"alive", message:"The backend is working perfectly!!"});
+})
+
 // 3. Contact Route
 app.post("/api/contact", async (req, res) => {
   const { name, email, message } = req.body;
